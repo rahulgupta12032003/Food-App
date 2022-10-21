@@ -1,0 +1,19 @@
+.pStag {
+  font-size: 14px !important;
+  margin-top: 25px;
+  color: blue;
+}
+
+.pStag2 {
+  font-size: 16px !important;
+  margin-top: 25px;
+}
+
+.rgStag {
+  border: 2px solid grey !important;
+  width: 180px !important;
+}
+
+.popUp_modal {
+  margin-top: 130px !important;
+}

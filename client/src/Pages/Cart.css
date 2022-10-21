@@ -1,0 +1,70 @@
+.carthead {
+  font-size: 45px;
+  background: -webkit-linear-gradient(rgb(167, 235, 32), rgb(235, 26, 172));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cartVariant{
+    font-size: 14px;
+}
+
+.cartContainer{
+    width: 100%;
+    border: 1px solid red;
+}
+
+.cart_price_size{
+    font-size: 16px;
+}
+
+.cart_inc_dec_btn{
+    font-size: 16px;
+    margin: 5px;
+}
+
+.cart_qty{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.cart_qty_inc{
+    color: green;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.cart_qty_dec{
+    color: red;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.cart_qty_inc:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+    cursor: pointer;
+}
+
+.cart_qty_dec:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+}
+
+.cart_img{
+    height: 80px;
+    width: 80px;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.cart_product_delete{
+    margin-top: 50px;
+    margin-left: 30px;
+    height: 30px;
+    font-size: 30px;
+    color: rgb(172, 26, 26);
+}
+
+.cart_product_delete:hover{
+    cursor: pointer;
+    color: crimson ;
+    box-shadow:  rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}

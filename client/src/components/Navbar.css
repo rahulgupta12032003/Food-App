@@ -1,0 +1,9 @@
+.app_name{
+    font-family: 'Titan One', cursive; 
+    font-size: 25px; 
+    color: maroon;
+    cursor: pointer;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
