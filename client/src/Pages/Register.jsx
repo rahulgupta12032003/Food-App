@@ -29,9 +29,14 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword ) {
       alert("Password is not matched");
-    } else {
+    }
+    else if(confirmPassword === "" || password === "" || name === "" || email === "")
+    {
+      alert("Please fill all the details first")
+    } 
+    else {
       const user = {
         name: name,
         email: email,
@@ -71,7 +76,6 @@ const Register = () => {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  required
                 />
               </FormControl>
               <FormControl id="email" isRequired>
@@ -80,7 +84,6 @@ const Register = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  required
                 />
               </FormControl>
               <FormControl id="password" isRequired>
@@ -91,7 +94,6 @@ const Register = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     minLength="6"
-                    required
                   />
                   <InputRightElement h={"full"}>
                     <Button
@@ -113,7 +115,6 @@ const Register = () => {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     minLength="6"
-                    required
                   />
                   <InputRightElement h={"full"}>
                     <Button
