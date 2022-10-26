@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const db = require("./db");
 // const pizzas_data = require("./models/FoodModel")
 const foodRouter = require("./Routes/FoodsRoutes")
+const userRouter = require("./Routes/userRoute")
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -34,6 +35,8 @@ app.get('/', (req, res) => {
 
 
 app.use("/api/foods", foodRouter);
+
+app.use("/api/user", userRouter)
 
 
 app.listen(port, () => {
