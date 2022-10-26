@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import Error from "../components/Error";
 import Foods from "../components/Foods";
 import { Box, Flex, Grid, GridItem, Image } from "@chakra-ui/react";
 // import PizzaData from "../FoodsData";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllFoods } from "../REDUX/Actions/FoodsActions";
+import Loading from "../components/Loading";
 
 
 const Homepage = () => {
@@ -20,23 +22,9 @@ const Homepage = () => {
       <Box>
           <Grid templateColumns="repeat(3, 1fr)" gap={30} p="20px" rounded="lg">
             {loading ? (
-              <Flex>
-                <Image
-                  src="https://www.raceentry.com/img/map/loading.gif"
-                  alt="Loading..."
-                  ml="110%"
-                  w="1000px"
-                  h="500px"
-                />
-              </Flex>
+              <Loading />
             ) : error ? (
-              <Flex>
-                <Image
-                  src="https://cdn.dribbble.com/users/5796108/screenshots/15140157/media/eae04c6f807e3a7bc79e58cd879df7d5.gif"
-                  alt="Oops! Something went wrong"
-                  ml="100%"
-                />
-              </Flex>
+              <Error  error='something went wrong' />
             ) : (
               foods.map((elem) => {
                 return (

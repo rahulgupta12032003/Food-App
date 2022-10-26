@@ -4,6 +4,7 @@ import "./Cart.css";
 import { useSelector, useDispatch } from "react-redux"
 import { AiOutlinePlusSquare, AiOutlineMinusSquare, AiTwotoneDelete } from "react-icons/ai"
 import { addToCartActions, deleteFromCart } from "../REDUX/Actions/CartActions"
+import Checkout from "../components/Checkout";
 
 const CartPage = () => {
 
@@ -76,9 +77,9 @@ const CartPage = () => {
           </Flex>
         </Box>
         <Box w="70%">
-            <Text fontSize="4xl" ml="80px" mt="10" className="fontMont">Cart Total : ₹{cartTotal}</Text>
+            <Text fontSize="4xl" ml="80px" mt="10" className="fontMont"> Cart Total : ₹{cartTotal} </Text>
             <WrapItem>
-              <Button ml="35%" mt="20px" colorScheme='purple'>PROCEED TO PAYMENT</Button>
+              <Button ml="35%" mt="20px" colorScheme='purple'> <Checkout cartTotal={cartTotal} /> </Button>
             </WrapItem>
         </Box> 
       </Flex>

@@ -12,29 +12,72 @@ import {
     Link
   } from '@chakra-ui/react';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch , useSelector } from 'react-redux';
+import { loginUser } from '../REDUX/Actions/userActions';
+import Loading from "../components/Loading";
+import Error from "../components/Error";
+import Success from "../components/Success";
   
   const Login = () => {
 
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+
+    const loginState = useSelector((state) => state.loginUserReducer)
+
+    const { loading , success , error } = loginState;
+
+
+    useEffect(() => {
+
+      if(localStorage.getItem("currentUser")){
+        navigate("/")
+      }
+
+    },[])
 
     const handleLogin = () => {
+
+      const currentUser = {
+        email : email,
+        password : password
+      }
       
+      if(email === "" && password === ""){
+        alert("Please enter the required details!")
+      }
+      else if(email === "" ){ 
+        alert("Please enter the email!")
+      }
+      else if(password === ""){
+        alert("Please enter the Password!")
+      }
+      else{
+        dispatch(loginUser(currentUser));
+      }
+       
     }
 
     return (
       <Flex
-        minH={'100vh'}
+        // minH={'100vh'}
         align={'center'}
         justify={'center'}
         bg={useColorModeValue('gray.50', 'gray.800')}>
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+
+          {loading && <Loading />}
+          {success && <Success success="login success!"/>}
+          {error && <Error error="Invalid credentials!"/>}
+
           <Stack align={'center'}>
             <Heading fontSize={'4xl'}>SIGN IN</Heading>
           </Stack>
+
           <Box
             rounded={'lg'}
             bg={useColorModeValue('white', 'gray.700')}

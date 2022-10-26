@@ -9,12 +9,17 @@ import {
   useColorMode,
   Image,
   Slider,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { ChevronDownIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../REDUX/Actions/userActions";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -23,7 +28,15 @@ function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const userState = useSelector((state) => state.loginUserReducer);
+
+  const currentUser = userState.currentUser;
+  // console.log(currentUser);
+
   const cartState = useSelector((state) => state.cartReducer);
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  }
 
   return (
     <>
@@ -73,29 +86,10 @@ function Navbar() {
               <Box
                 display="flex"
                 alignItems="center"
-                w="330px"
+                w="auto"
+                gap="20px"
                 justifyContent="space-between"
               >
-                <Button
-                  colorScheme="teal"
-                  onClick={() => {
-                    navigate("/Register");
-                  }}
-                >
-                  {" "}
-                  REGISTER{" "}
-                </Button>
-
-                <Button
-                  colorScheme="teal"
-                  onClick={() => {
-                    navigate("/Login");
-                  }}
-                >
-                  {" "}
-                  LOGIN{" "}
-                </Button>
-
                 <Button
                   colorScheme="teal"
                   onClick={() => {
@@ -105,6 +99,42 @@ function Navbar() {
                   {" "}
                   CART {cartState.cartItems.length}
                 </Button>
+
+                {currentUser ? (
+                  <>
+                    <Menu>
+                      <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                        {currentUser.name}
+                      </MenuButton>
+                      <MenuList>
+                        <MenuItem>Orders</MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                      </MenuList>
+                    </Menu>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      colorScheme="teal"
+                      onClick={() => {
+                        navigate("/Register");
+                      }}
+                    >
+                      {" "}
+                      REGISTER{" "}
+                    </Button>
+                    <Button
+                      colorScheme="teal"
+                      onClick={() => {
+                        navigate("/Login");
+                      }}
+                    >
+                      {" "}
+                      LOGIN{" "}
+                    </Button>
+                  </>
+                )}
+
               </Box>
             </Stack>
           </Flex>

@@ -14,10 +14,14 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import axios from "axios";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
+import { registerUser } from "../REDUX/Actions/userActions";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
+import Success from "../components/Success";
+ 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
@@ -27,6 +31,11 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const registerState = useSelector((state) => state.registerUserReducer)
+
+  const { loading , success , error } = registerState;
 
   const handleRegister = () => {
     if (password !== confirmPassword ) {
@@ -43,34 +52,39 @@ const Register = () => {
         password: password,
       };
       console.log(user);
+      dispatch(registerUser(user));
     }
   };
 
   return (
     <div>
       <Flex
-        minH={"100vh"}
         align={"center"}
         justify={"center"}
         bg={useColorModeValue("gray.50", "gray.800")}
       >
-        <Stack spacing={8} mx={"auto"} maxW="lg" py={12} px={6}>
+        <Stack spacing={2} mx={"auto"} maxW="lg" px={6}>
           <Stack align={"center"}>
+          {loading && <Loading />}
+          {success && <Success success="user registered successfully"/>}
+          {error && <Error error="something went wrong!"/>}
             <Heading fontSize={"4xl"} textAlign={"center"}>
               SIGN UP
             </Heading>
           </Stack>
+
+
           <Box
             rounded={"lg"}
             bg={useColorModeValue("white", "gray.700")}
             boxShadow={"lg"}
-            p={8}
+            p={6}
             border="2px"
             borderColor="gray"
             w="lg"
           >
             <Stack spacing={4}>
-              <FormControl id="firstName" isRequired>
+              <FormControl id="name" isRequired>
                 <FormLabel>Name</FormLabel>
                 <Input
                   type="text"
@@ -107,7 +121,7 @@ const Register = () => {
                   </InputRightElement>
                 </InputGroup>
               </FormControl>
-              <FormControl id="confirmPassword" isRequired>
+              <FormControl id="confirmPassword" >
                 <FormLabel>Confirm Password</FormLabel>
                 <InputGroup>
                   <Input
