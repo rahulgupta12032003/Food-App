@@ -7,12 +7,14 @@ import { composeWithDevTools } from '@redux-devtools/extension';
 import { foodsReducers } from "./Reducer/FoodsReducer";
 import { cartReducer } from "./Reducer/CartReducer";
 import { loginUserReducer, registerUserReducer } from "./Reducer/userReducer";
+import { placeOrderReducer } from "./Reducer/orderReducer";
 
 const finalReducer = combineReducers({
     foodsReducers : foodsReducers,
     cartReducer : cartReducer,
     registerUserReducer : registerUserReducer,
-    loginUserReducer : loginUserReducer
+    loginUserReducer : loginUserReducer,
+    placeOrderReducer : placeOrderReducer
 });
 
 const cartData = localStorage.getItem("cartFoods") ? JSON.parse(localStorage.getItem("cartFoods")) : [];

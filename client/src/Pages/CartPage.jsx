@@ -30,9 +30,9 @@ const CartPage = () => {
                  {
                    cartItems.map((elem) => {
                      return (
-                      <Box>
+                      <Box key={elem._id}>
                           <Flex>
-                            <Box key={elem._id} m="30px" w="70%">
+                            <Box m="30px" w="70%">
                               
                                 <h1>{elem.name}</h1>
                                 {
@@ -76,12 +76,12 @@ const CartPage = () => {
              </Box>
           </Flex>
         </Box>
-        <Box w="70%">
-            <Text fontSize="4xl" ml="80px" mt="10" className="fontMont"> Cart Total : ₹{cartTotal} </Text>
+        <div style={{width: "70%" , display:"grid" , justifyContent:"center"}}>
+            <Text fontSize="4xl" mt="10" className="fontMont"> Cart Total : ₹{cartTotal} </Text>
             <WrapItem>
-              <Button ml="35%" mt="20px" colorScheme='purple'> <Checkout cartTotal={cartTotal} /> </Button>
+              <Checkout cartTotal={cartTotal} />
             </WrapItem>
-        </Box> 
+        </div> 
       </Flex>
     </div>
   );

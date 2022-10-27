@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Prac from "./components/Prac";
 import CartPage from "./Pages/CartPage";
 import Homepage from "./Pages/Homepage";
 import Login from "./Pages/Login";
@@ -17,6 +18,7 @@ function App() {
          <Route path="/cart" element={<CartPage />} />
          <Route path="/register" element={<Register />} />
          <Route path="/login" element={<Login />} />
+         <Route path="/prac" element={<Prac />} />
       </Routes>
 
     </div>
