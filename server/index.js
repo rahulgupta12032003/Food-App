@@ -4,16 +4,19 @@
 
 const express = require('express');
 const dotenv = require("dotenv");
+const cors = require('cors');
 const db = require("./db");
 // const pizzas_data = require("./models/FoodModel")
-const foodRouter = require("./Routes/FoodsRoutes")
-const userRouter = require("./Routes/userRoute")
+const foodRouter = require("./Routes/FoodsRoutes");
+const userRouter = require("./Routes/userRoute");
+const orderRouter = require("./Routes/orderRoute");
 
 const app = express();
 const port = process.env.PORT || 8080;
 
 dotenv.config();
 app.use(express.json());
+app.use(cors())
 
 
 app.get('/', (req, res) => {
@@ -36,7 +39,10 @@ app.get('/', (req, res) => {
 
 app.use("/api/foods", foodRouter);
 
-app.use("/api/user", userRouter)
+app.use("/api/user", userRouter);
+
+app.use("/api/orders", orderRouter);
+
 
 
 app.listen(port, () => {

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/userModel')
+const User = require('../models/userModel');
+const multer = require('multer');
 
 
 // ___________ Register ____________
@@ -53,5 +54,24 @@ router.post("/login" , async (req, res) =>
    }
 })
 
+
+////_________________________ upload images _____________________________////
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: function (req, file, cb){
+      cb(null, "uploads")
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + "-" + Date.now() + ".jpg")
+    }
+  })
+}).single("image")
+
+router.post('/uploads', upload, (req, res) => {
+  res.send("File Uploaded Successfully!")
+});
+
+//// ___________________________________________________________________ ////
 
 module.exports = router;
