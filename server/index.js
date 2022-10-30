@@ -43,6 +43,7 @@ app.use("/api/user", userRouter);
 
 app.use("/api/orders", orderRouter);
 
+app.use("/uploads",express.static("./uploads"));
 
 
 app.listen(port, () => {
